@@ -1,3 +1,5 @@
+RecReading=true
+
 e = campaignTrail_temp;
 
 nct_stuff.themes[nct_stuff.selectedTheme].coloring_title = "#415070";
@@ -10,7 +12,7 @@ $("#game_window")[0].style.backgroundColor = nct_stuff.themes[nct_stuff.selected
 
 $(".container")[0].style.backgroundColor = "#647bac";
 
-document.getElementById("header").src = "https://i.imgur.com/oDW9SH9.jpeg";
+document.getElementById("header").src = "https://i.imgur.com/JZDmO6w.jpeg";
 
 HistHexcolour=["#2a3fde","#d41c18","#bfa72c","#AA0000"];
 HistName=[" Mikie Sherrill"," Jack Ciattarelli"," Vic Kaplan"," Joanne Kuniansky"];
@@ -41,7 +43,7 @@ e.election_json = [
             "image_url":"https://i.imgur.com/t3RGS7i.jpeg",
             "winning_electoral_vote_number": 0,
             "advisor_url":"https://static01.nyt.com/images/2025/11/04/multimedia/eln-POST-2025-11-04-state-nj-36b186/eln-POST-2025-11-04-state-nj-36b186-videoSixteenByNineJumbo1600.jpg",
-            "recommended_reading":"<ul>\n<li><a href=https://www.chicagotribune.com/opinion/editorials/ct-edit-chicago-tribune-biden-endorsement-20200925-lnyxsb5qvrftnjjmj3rnzj33jy-story.html>Our Case For Joe Biden</a></li>\n<li><a href=https://nationalinterest.org/feature/case-trump-166808>The Case For Trump</a></li>\n<li><a href=https://www.npr.org/2020/11/18/935730100/how-biden-won-ramping-up-the-base-and-expanding-margins-in-the-suburbs>How Biden Won: Ramping Up The Base And Expanding Margins In The Suburbs</a></li>\n<li><a href=https://www.prospectmagazine.co.uk/politics/donald-trump-joe-biden-us-election-almost-win-votes-concede>Why Did Trump Almost Win?</a></li>\n<li><a href=https://www.hoover.org/research/no-evidence-voter-fraud-guide-statistical-claims-about-2020-election>No Evidence For Voter Fraud: A Guide To Statistical Claims About The 2020 Election</a></li>\n</ul>",
+            "recommended_reading":"<p>Credits</p> <p>for tooltips: https://www.reddit.com/r/thecampaigntrail/comments/1742wcn/guide_adding_2021de_style_tooltips_to_your_mod/ </p> <p>for mods: 2013 nj, 1876 </p> <p> helpful websites: </p>",
             "has_visits": 1,
             "no_electoral_majority_image":"../static/images/2012-no-majority.jpg"
         }
@@ -388,7 +390,7 @@ tooltipList = [
     {searchString: "publishing company", explanationText: "Galen Publishing. Accused of worsening the opioid crisis in New Jersey, but attacks could go... very badly."},
     {searchString: "Trump", explanationText: "<img src=https://i.imgur.com/HetcnBl.jpeg> 47th President of the United States. You won off his unpopularity in 2018. Will it work again?"},
     {searchString: "state of emergency", explanationText: "A tool that can be used by the governor to immediately deploy resources and request federal aid for a crisis."},
-    {searchString: "shifted sharply to the right", explanationText: "<img src=https://i.imgur.com/tNFrDpm.png> A key reason for Kamala's poor performance in New Jersey. But maybe Trump will fix that?"},
+    {searchString: "shifted sharply to the right", explanationText: "<img src=https://i.imgur.com/tNFrDpm.png> A key reason for Kamala Harris's poor performance in New Jersey. But maybe Trump will fix that?"},
     {searchString: "consolidating", explanationText: "<img src=https://i.imgur.com/4KLzkVY.jpeg> Merging multiple school districts to shrink overall infrastructure costs. Highly controversial among wealthy families due to mixing them with those less well off."},
     {searchString: "Consolidating", explanationText: "<img src=https://i.imgur.com/4KLzkVY.jpeg> Merging multiple school districts to shrink overall infrastructure costs. Highly controversial among wealthy families due to mixing them with those less well off."},
     {searchString: "district consolidation", explanationText: "<img src=https://i.imgur.com/4KLzkVY.jpeg> Merging multiple school districts to shrink overall infrastructure costs. Highly controversial among wealthy families due to mixing them with those less well off."},
@@ -396,6 +398,7 @@ tooltipList = [
     {searchString: "Assembly", explanationText: "<img src=https://i.imgur.com/vMqx1Vb.jpeg> A Democratic near-supermajority, unlikely to see major losses during what should be a blue wave year. Right?"},
     {searchString: "party rivalries", explanationText: "<img src=https://i.imgur.com/IFWtTTr.png> Can these two just shut up?"},
     {searchString: "High Tax Jack", explanationText: "<img src=https://i.imgur.com/t4gx8er.png>"},
+    {searchString: "Mamdani", explanationText: "<img src=https://i.imgur.com/0eMDUDR.jpeg> Democratic (socialist) nominee for Mayor of New York City. Basically your polar opposite."},
     {searchString: "Kamala Harris", explanationText: "<img src=https://i.imgur.com/UW0lZle.jpeg> A qualified woman trying to succeed an unpopular elderly Democrat. If only she were unburdened by what has been..."},
     {searchString: "military", explanationText: "<img src=https://i.imgur.com/JlXqXhk.jpeg> A key component of your first House campaign back in 2018, and still is today."},
     {searchString: "New Jersey Education Association", explanationText: "The largest public school labor union in the state, with over 200,000 members."},
@@ -684,6 +687,16 @@ campaignTrail_temp.achievements = {
     "Baraka Coulda Won" : {
       "image" : "https://i.imgur.com/i0sfcdL.jpeg",
       "description" : "As Sherrill, lose",
+      "cannotBeCheated" : true
+  },
+    "True Mandate" : {
+      "image" : "https://i.imgur.com/JLWfUOi.jpeg",
+      "description" : "As Sherrill, win the largest State Assembly majority in history",
+      "cannotBeCheated" : true
+  },
+    "New Party Foundation" : {
+      "image" : "https://i.imgur.com/Lf7vkLI.jpeg",
+      "description" : "As Sherrill, win Morris County without a single battleground in the South",
       "cannotBeCheated" : true
   },
     "Blue Tea Party" : {

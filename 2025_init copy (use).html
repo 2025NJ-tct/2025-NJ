@@ -30,7 +30,7 @@ campaignTrail_temp.modBoxTheme = {
      "ui_text_color": "#000000"
 }
 
-document.body.background = "https://i.imgur.com/T9DAeFM.jpeg";
+document.body.background = "https://i.imgur.com/jgAM6Q5.jpeg";
 
 document.head.innerHTML += "<style>#results_container {color:#000000;}</style>";
 e.election_json = [
@@ -43,7 +43,7 @@ e.election_json = [
             "image_url":"https://i.imgur.com/t3RGS7i.jpeg",
             "winning_electoral_vote_number": 0,
             "advisor_url":"https://static01.nyt.com/images/2025/11/04/multimedia/eln-POST-2025-11-04-state-nj-36b186/eln-POST-2025-11-04-state-nj-36b186-videoSixteenByNineJumbo1600.jpg",
-            "recommended_reading":"<p>Credits</p> <p>for tooltips: https://www.reddit.com/r/thecampaigntrail/comments/1742wcn/guide_adding_2021de_style_tooltips_to_your_mod/ </p> <p>for mods: 2013 nj, 1876 </p> <p> helpful websites: </p>",
+            "recommended_reading":"<p>Credits</p> <p>for tooltips: https://www.reddit.com/r/thecampaigntrail/comments/1742wcn/guide_adding_2021de_style_tooltips_to_your_mod/ , also TTNW for the ones that change from side to side</p> <p>for mods: 2013 nj (svg and basis), 1876 (achievements), 2022PA (banners), Divided States (ending slides) </p> <p> helpful websites: </p>",
             "has_visits": 1,
             "no_electoral_majority_image":"../static/images/2012-no-majority.jpg"
         }
@@ -101,7 +101,7 @@ e.candidate_json = [
             "color_hex":"#2a3fde",
             "secondary_color_hex": null,
             "is_active": 1,
-            "image_url": "https://i.imgur.com/3ZKQKnA.jpeg",
+            "image_url": "https://i.imgur.com/BuA00zb.jpeg",
             "electoral_victory_message":"<h3>REAL PATRIOT DUMMY EXAMPLE SWEEPS</h3>",
             "electoral_loss_message":"<h3>Fake News?</h3>",
             "no_electoral_majority_message":"<h3>DUMMY EXAMPLE RETURNS TO HELL</h3>",
@@ -125,7 +125,7 @@ e.candidate_json = [
             "color_hex": "#d41c18",
             "secondary_color_hex": null,
             "is_active": 1,
-            "image_url": "https://i.imgur.com/qZvBdsA.jpeg",
+            "image_url": "https://i.imgur.com/2DtKX1e.jpeg",
             "electoral_victory_message":"<h3>REAL PATRIOT DUMMY EXAMPLE SWEEPS</h3>",
             "electoral_loss_message":"<h3>Fake News?</h3>",
             "no_electoral_majority_message":"<h3>DUMMY EXAMPLE RETURNS TO HELL</h3>",
@@ -149,7 +149,7 @@ e.candidate_json = [
             "color_hex":"#0000ff",
             "secondary_color_hex":null,
             "is_active":0,
-            "image_url": "https://i.imgur.com/cxAEdgw.jpeg",
+            "image_url": "https://i.imgur.com/JeSf4sw.jpeg",
             "electoral_victory_message":"<h3>REAL PATRIOT DUMMY EXAMPLE SWEEPS</h3>",
             "electoral_loss_message":"<h3>Fake News?</h3>",
             "no_electoral_majority_message":"<h3>DUMMY EXAMPLE RETURNS TO HELL</h3>",
@@ -174,7 +174,7 @@ e.candidate_json = [
             "color_hex": "#0000ff",
             "secondary_color_hex": null,
             "is_active": 0,
-            "image_url": "https://i.imgur.com/uhvDVUH.jpeg",
+            "image_url": "https://i.imgur.com/NQiTTdE.jpeg",
             "electoral_victory_message": "<h3>REAL PATRIOT DUMMY EXAMPLE SWEEPS</h3>",
             "electoral_loss_message": "<h3>Fake News?</h3>",
             "no_electoral_majority_message":"<h3>DUMMY EXAMPLE RETURNS TO HELL</h3>",
@@ -377,7 +377,7 @@ function addDynamicCSS() {
 
 addDynamicCSS();
 
-tooltipList = [
+DEMtooltipList = [
     {searchString: "November 2024", explanationText: "<img src=https://i.imgur.com/F8O9QT1.png> Dear God."},
     {searchString: "crowded field", explanationText: "<img src=https://i.imgur.com/bWlpiii.png> Ranges from outsider progressives to centrist party stalwarts. Good luck being ideologically distinct."},
     {searchString: "military background", explanationText: "<img src=https://i.imgur.com/JlXqXhk.jpeg> A key component of your first House campaign back in 2018, and still is today."},
@@ -406,6 +406,11 @@ tooltipList = [
         
 ];
 
+REPtooltipList = [
+    {searchString: "April 2024", explanationText: "<img src=https://i.imgur.com/OcbuZPT.jpeg> These two again?"},
+    {searchString: "Gateway Tunnel", explanationText: "<img src=https://i.imgur.com/5vfWtNS.jpeg> A multibillion dollar project aimed at building a new railway tunnel from New Jersey to Manhattan. Threatened by Trump's steep budget cuts."}
+        
+];
 
   $("#game_start").click((event) => {
     event.preventDefault();
@@ -638,12 +643,24 @@ musicMode()
                 "url": "https://files.catbox.moe/1nn7g4.mp3"
               },
               {
+                "name": "Red, White and Jersey - Bon Jovi",
+                "url": "https://files.catbox.moe/2mkd9x.mp3"
+              },
+              {
+                "name": "Jack & Diane - John Mellencamp",
+                "url": "https://files.catbox.moe/naxw7w.mp3"
+              },
+              {
                 "name": "Livin On A Prayer - Bon Jovi",
                 "url": "https://files.catbox.moe/zr8mn0.mp3"
               },
               {
                 "name": "Hit The Road Jack - Ray Charles",
                 "url": "https://files.catbox.moe/nlsxon.mp3"
+              },
+              {
+                "name": "Born To Run - Bruce Springsteen",
+                "url": "https://audio.jukehost.co.uk/2ik4UGYooJHszSLdrle1GOT4USpqDV98"
               },
               {
                 "name": "Woke Up This Morning - Alabama 3",

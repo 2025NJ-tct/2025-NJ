@@ -1,3 +1,21 @@
+/*
+ * Mod Title: 2025 NJ
+ * Mod Author: AwfulAtSocializing
+ * Mod Version: 1.0
+ * Mod Description: 2025 New Jersey gubernatorial election
+ * 
+ * Coding License: Apache License 2.0
+ * Writing License: Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)
+ * 
+ * For the coding in this mod, I hereby release the code under the terms and conditions of the Apache License 2.0. The full text of the license can be found at:
+ * https://choosealicense.com/licenses/apache-2.0/
+ * 
+ * For the writing in this mod, including documentation, text files, and other non-software written works, I hereby release the content under the terms and conditions of the Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0) license. The full text of the license can be found at:
+ * https://creativecommons.org/licenses/by-nc/4.0/legalcode
+ * 
+ * By using, distributing, or modifying this mod, you agree to abide by the terms and conditions of both the Apache License 2.0 and the Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0) license.
+*/
+
 RecReading=true
 
 e = campaignTrail_temp;
@@ -13,6 +31,103 @@ $("#game_window")[0].style.backgroundColor = nct_stuff.themes[nct_stuff.selected
 $(".container")[0].style.backgroundColor = "#647bac";
 
 document.getElementById("header").src = "https://i.imgur.com/JZDmO6w.jpeg";
+
+let observerRunning = false;
+let processedNodes = new Set();
+const scrollableElementIds = ["overall_result", "state_result", "state_info", "main_content_area", "final_results_description"];
+let campaign_sign = null;
+
+async function handleMutations(mutationsList, observer) {
+    if (observerRunning) return;
+    observerRunning = true;
+
+    // stop observing
+    observer.disconnect();
+
+    const state_info = document.getElementById("state_info")
+    if (state_info) {
+        const state_info_header = state_info.children[0];
+        if (state_info_header && state_info_header.textContent !== "COUNTY SUMMARY") {
+            state_info_header.textContent = "COUNTY SUMMARY";
+        }
+    }
+
+    const overall_result = document.getElementById("overall_result");
+    if (overall_result) {
+        const overall_result_header = overall_result.children[0];
+        if (overall_result_header && overall_result_header.textContent === "ELECTORAL VOTES") {
+            overall_result_header.textContent = "OVERALL RESULTS";
+        }
+    }
+
+    const state_result = document.getElementById("state_result");
+    if (state_result) {
+        const state_result_header = state_result.children[0];
+        if (state_result_header && state_result_header.textContent !== "COUNTY RESULTS") {
+            state_result_header.textContent = "COUNTY RESULTS";
+        }
+        const state_result_text = state_result.children[1];
+        if (state_result_text) {
+            if (state_result_text.textContent === "Click on a state to view final results.") {
+                state_result_text.textContent = "Click on a county to view final results.";
+            } else if (state_result_text.textContent === "Click on a state to view detailed results (once returns for that state arrive).") {
+                state_result_text.textContent = "Click on a county to view detailed results (once returns for that county arrive).";
+            } else if (state_result_text.textContent === "Returns for this state are not yet available!") {
+                state_result_text.textContent = "Returns for this county are not yet available!";
+            }
+        }
+    }
+
+    const state_results_button = document.getElementById("state_results_button");
+    if (state_results_button && state_results_button.textContent === "Results by State") {
+        state_results_button.textContent = "Results by County";      
+    }
+
+    const headers = document.getElementsByClassName("title_h3");
+    for (const header of headers) {
+        if (header.textContent === "Election Results and Data by State") {
+            header.textContent = "Election Results and Data by County";
+        }
+    }
+
+    const sort_tab = document.getElementById("sort_tab");
+    if (sort_tab && sort_tab.querySelector('option[value="2"]')) {
+        const queryTwo = sort_tab.querySelector('option[value="2"]');
+        if (queryTwo) {
+            queryTwo.remove();
+        }
+    }
+
+    if (sort_tab && sort_tab.querySelector('option[value="3"]')) {
+        const queryThree = sort_tab.querySelector('option[value="3"]');
+        if (queryThree.textContent === "Closest States") {
+            queryThree.textContent = "Closest Counties"
+        }
+    }
+
+    const sort_tab_area = document.getElementById("sort_tab_area");
+    if (sort_tab_area) {
+        const sort_text = sort_tab_area.firstElementChild.firstChild;
+        if (sort_text.textContent.startsWith("View states by:")) {
+            sort_text.textContent = "View counties by:" + sort_text.textContent.slice("View counties by:".length);
+        }
+    }
+
+    const state_tab_area = document.getElementById("state_tab_area");
+    if (state_tab_area) {
+        const state_text = state_tab_area.firstElementChild.firstChild;
+        if (state_text.textContent.startsWith("Select a state:")) {
+            state_text.textContent = "Select a county:" + state_text.textContent.slice("Select a county:".length);
+        }
+    }
+
+    // Resume observing
+    observer.observe(document.documentElement, { childList: true, subtree: true });
+    observerRunning = false;
+}
+
+let singleObserver = new MutationObserver(handleMutations);
+singleObserver.observe(document.documentElement, { childList: true, subtree: true });
 
 HistHexcolour=["#2a3fde","#d41c18","#bfa72c","#AA0000"];
 HistName=[" Mikie Sherrill"," Jack Ciattarelli"," Vic Kaplan"," Joanne Kuniansky"];
@@ -30,6 +145,12 @@ campaignTrail_temp.modBoxTheme = {
      "ui_text_color": "#000000"
 }
 
+document.getElementById("inner_window_1").children[0].innerHTML = `<h3>Do you have what it takes to win a New Jersey gubernatorial election?</h3>`
+
+document.getElementById("inner_window_1").children[1].innerHTML = `<li>Select a candidate and a running mate to find out.</li><li>You will answer questions about your platform and positions, and also about your campaign strategy.</li><li>The answers will affect your popularity for better or worse, both statewide and in individual counties.</li><li>Walk the fine line between appealing to your base and winning a majority of the votes.</li><li>Context details are included for <span class='mytooltip'>highlighted<span class='mytooltiptext'>This is a context detail.</span></span> text.</li>`;
+
+campaignTrail_temp.HomeStateText = "Home County:"
+
 document.body.background = "https://i.imgur.com/jgAM6Q5.jpeg";
 
 document.head.innerHTML += "<style>#results_container {color:#000000;}</style>";
@@ -43,7 +164,7 @@ e.election_json = [
             "image_url":"https://i.imgur.com/t3RGS7i.jpeg",
             "winning_electoral_vote_number": 0,
             "advisor_url":"https://static01.nyt.com/images/2025/11/04/multimedia/eln-POST-2025-11-04-state-nj-36b186/eln-POST-2025-11-04-state-nj-36b186-videoSixteenByNineJumbo1600.jpg",
-            "recommended_reading":"<p>Credits</p> <p>for tooltips: https://www.reddit.com/r/thecampaigntrail/comments/1742wcn/guide_adding_2021de_style_tooltips_to_your_mod/ , also TTNW for the ones that change from side to side</p> <p>for mods: 2013 nj (svg and basis), 1876 (achievements), 2022PA (banners), Divided States (ending slides) </p> <p> helpful websites: </p>",
+            "recommended_reading":"<div style='overflow-y:scroll;height:370px;margin-bottom:0px;'><p><b><u>Helpful Sources</b></u></p> <p><a href='https://www.nj.com/politics/2025/10/the-nastiest-race-in-nj-gov-history-just-got-uglier-heres-why-sherrills-cheap-shot-worked.html' target='_blank'>The nastiest race in N.J. gov history just got uglier. Here's why Sherrill's cheap shot worked.</a> <br> <a href='https://www.nytimes.com/2025/10/13/nyregion/opioids-nj-governor-race.html' target='_blank'>Explosive Accusation Shakes Up New Jersey Governor's Race</a> <br> <a href='https://www.tiktok.com/@nytopinion/video/7567718889241546015' target='_blank'>In the New Jersey's governor race, the Democratic candidate, Mikie Sherrill, is polling well. So why is there so much anxiety?</a> <br> <a href='https://newjerseymonitor.com/2024/04/09/republican-jack-ciattarelli-launches-long-anticipated-run-for-governor/' target='_blank'>Republican Jack Ciattarelli launches long-anticipated run for governor</a> <br> <a href='https://newjerseyglobe.com/governor/opinion-trumps-endorsement-of-ciattarelli-is-a-confusing-betrayal-to-the-maga-movement/' target='_blank'>Opinion: Trump's Endorsement of Ciattarelli Is a Confusing Betrayal to the MAGA Movement</a> <br> <a href='https://www.insidernj.com/ciattarelli-outlines-10-point-garden-state-affordability-agenda/' target='_blank'>Ciattarelli Outlines 10-Point Garden State Affordability Agenda</a> <br> <a href='https://newjerseyglobe.com/campaigns/the-new-jersey-globes-2025-convention-tracker/' target='_blank'>The New Jersey Globe's 2025 Convention Tracker</a> <br> <a href='https://www.nj.com/data/2026/03/nj-families-just-got-hit-with-the-nations-biggest-energy-bill-spike-see-the-brutal-numbers.html' target='_blank'>N.J. families just got hit with the nation's biggest energy bill spike. See the brutal numbers.</a> <br> <a href='https://newjerseymonitor.com/briefs/analilia-mejia-wins-nj-special-election/' target='_blank'>Activist Analilia Mejia wins Dem nod in NJ special election</a> <br> <a href='https://whyy.org/articles/new-jersey-election-2026-primary-senate-republican-nomination/' target='_blank'>Justin Murphy wins New Jersey's Republican Senate primary. He'll face Cory Booker in November</a> <br> <p>for code and svg: 2013 nj mod</p> <p> helpful websites: </p> <p>Copyright Stuff</p>",
             "has_visits": 1,
             "no_electoral_majority_image":"../static/images/2012-no-majority.jpg"
         }
@@ -667,16 +788,8 @@ musicMode()
                 "url": "https://files.catbox.moe/2mkd9x.mp3"
               },
               {
-                "name": "Jack & Diane - John Mellencamp",
-                "url": "https://files.catbox.moe/naxw7w.mp3"
-              },
-              {
                 "name": "Livin On A Prayer - Bon Jovi",
                 "url": "https://files.catbox.moe/zr8mn0.mp3"
-              },
-              {
-                "name": "Hit The Road Jack - Ray Charles",
-                "url": "https://files.catbox.moe/nlsxon.mp3"
               },
               {
                 "name": "Born To Run - Bruce Springsteen",
@@ -773,7 +886,7 @@ campaignTrail_temp.achievements = {
   },
     "Back to 2017" : {
       "image" : "https://i.imgur.com/a2MNjob.jpeg",
-      "description" : "As Ciattarelli, lose normally",
+      "description" : "As Ciattarelli, lose decisively",
       "cannotBeCheated" : true
   },
     "Single Digits" : {
